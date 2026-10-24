@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "nextmail": {
+      "type": "http",
+      "url": "https://api.nextmail.sh/mcp",
+      "oauth_resource": "https://api.nextmail.sh/mcp"
+    }
+  }
+}

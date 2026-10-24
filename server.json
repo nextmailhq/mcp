@@ -1,0 +1,34 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "sh.nextmail/mcp",
+  "title": "Nextmail",
+  "description": "Read, search, reply to and send email from your own Nextmail mailbox, with contacts and calendars.",
+  "version": "1.0.0",
+  "websiteUrl": "https://nextmail.sh/agents",
+  "icons": [
+    {
+      "src": "https://nextmail.sh/icons-pwa/icon-512.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "512x512"
+      ]
+    },
+    {
+      "src": "https://nextmail.sh/favicon.svg",
+      "mimeType": "image/svg+xml",
+      "sizes": [
+        "any"
+      ]
+    }
+  ],
+  "repository": {
+    "url": "https://github.com/nextmailhq/mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://api.nextmail.sh/mcp"
+    }
+  ]
+}

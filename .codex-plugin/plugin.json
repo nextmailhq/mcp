@@ -1,0 +1,50 @@
+{
+  "name": "nextmail",
+  "version": "1.0.0",
+  "description": "Email for AI agents. Connects your agent to your Nextmail mailbox over MCP to read, search, reply and send, with skills for sending email from code, disposable inboxes in tests and moving from Resend.",
+  "author": {
+    "name": "Nextmail",
+    "email": "support@nextmail.sh",
+    "url": "https://nextmail.sh"
+  },
+  "homepage": "https://nextmail.sh/agents",
+  "repository": "https://github.com/nextmailhq/mcp",
+  "license": "MIT",
+  "keywords": [
+    "email",
+    "mcp",
+    "inbox",
+    "email-api",
+    "transactional-email",
+    "ai-agents",
+    "temporary-email",
+    "webhooks"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Nextmail",
+    "shortDescription": "Read, reply to and send email from your own mailbox",
+    "longDescription": "Work in your Nextmail mailbox from the chat: find and read conversations, draft and send replies, and keep contacts and calendars up to date. The skills also cover sending email from your own code, disposable inboxes for sign-up tests and moving from another provider.",
+    "developerName": "Nextmail",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://nextmail.sh",
+    "privacyPolicyURL": "https://nextmail.sh/privacy",
+    "termsOfServiceURL": "https://nextmail.sh/terms",
+    "defaultPrompt": [
+      "Summarise what came into my inbox today and what still needs an answer",
+      "Draft a reply to the latest email from my accountant",
+      "Make a disposable inbox and read the verification code that arrives"
+    ],
+    "brandColor": "#F54337",
+    "composerIcon": "./assets/icon.svg",
+    "logo": "./assets/icon.png",
+    "logoDark": "./assets/icon.png",
+    "screenshots": []
+  }
+}

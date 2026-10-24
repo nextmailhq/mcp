@@ -1,0 +1,16 @@
+{
+  "name": "nextmail",
+  "description": "Email for AI agents. Connects your agent to your Nextmail mailbox over MCP to read, search, reply and send, with skills for sending email from code, disposable inboxes in tests and moving from Resend.",
+  "owner": {
+    "name": "Nextmail",
+    "email": "support@nextmail.sh"
+  },
+  "plugins": [
+    {
+      "name": "nextmail",
+      "source": "./",
+      "description": "Email for AI agents. Connects your agent to your Nextmail mailbox over MCP to read, search, reply and send, with skills for sending email from code, disposable inboxes in tests and moving from Resend.",
+      "version": "1.0.0"
+    }
+  ]
+}

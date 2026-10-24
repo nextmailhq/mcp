@@ -1,16 +1,19 @@
 ---
 name: nextmail-send-email
-description: Send transactional email from an app, script or CI job with Nextmail, through its SDKs (TypeScript, Python, Ruby, PHP, Go, Java, C#), its REST API or its CLI. Covers API keys, sending from your own domain, retries that never send twice, and signed webhooks for delivery events. Use when adding email sending to code, or when the user mentions Nextmail.
+description: Send transactional email from an app, script or CI job with Nextmail, through its SDKs (TypeScript, Python, Ruby, PHP, Go, Java, C#) or its REST API. Covers API keys, sending from your own domain, retries that never send twice, and signed webhooks for delivery events. Use when adding email sending to code, or when the user mentions Nextmail.
 ---
 
 # Send email with Nextmail
 
-Nextmail sends from addresses on domains the workspace has verified. Every call below needs an API key, and a `from` address on one of those domains.
+Nextmail sends from addresses on domains the workspace has verified. Code that sends needs an API key, and a `from` address on one of those domains.
+
+To send from this conversation rather than from code, use the tools of the Nextmail connector instead. They sign in with OAuth and need no key.
 
 ## 1. Get an API key
 
 1. In Nextmail, open Settings, then API keys, and create a key. Sending only is the default scope, and a key can be narrowed to some domains or addresses.
-2. The key is shown once. Keep it in the environment as `NEXTMAIL_API_KEY` or in a secret manager. Never commit it, and never ship it to a browser or a mobile app.
+2. The key is shown once. The user stores it wherever the app keeps its other secrets, such as a secret manager or the settings of the deployment. It never goes into the repository, a browser or a mobile app.
+3. Never read, print or paste a key yourself. The code below receives it from the configuration of the app, written here as `config`.
 
 ## 2. Send
 
@@ -18,8 +21,9 @@ TypeScript, with `npm install @nextmail/sdk`:
 
 ```typescript
 import { init, nextmail } from '@nextmail/sdk'
+import { config } from './config'
 
-init({ apiKey: process.env.NEXTMAIL_API_KEY })
+init({ apiKey: config.nextmailApiKey })
 
 const email = await nextmail.emails.send(
   {
@@ -37,11 +41,11 @@ console.log(email.id, email.status)
 Python, with `pip install nextmail`:
 
 ```python
-import os
-
 from nextmail import init, nextmail
 
-init(os.environ['NEXTMAIL_API_KEY'])
+from app.config import settings
+
+init(settings.nextmail_api_key)
 
 email = nextmail.emails.send({
     'from': 'Acme Billing <billing@acme.com>',
@@ -51,24 +55,14 @@ email = nextmail.emails.send({
 })
 ```
 
-Any language, over HTTP:
+Any language, over HTTP. The user runs this with their key in place of `<API key>`:
 
 ```bash
 curl -X POST https://api.nextmail.sh/emails \
-  -H "Authorization: Bearer $NEXTMAIL_API_KEY" \
+  -H "Authorization: Bearer <API key>" \
   -H "Content-Type: application/json" \
   -H "Idempotency-Key: invoice-2026-09-ada" \
   -d '{"from":"Acme Billing <billing@acme.com>","to":["ada@example.com"],"subject":"Your September invoice","html":"<p>Invoice attached.</p>"}'
-```
-
-From a shell or a CI job, with `npm install -g @nextmail/cli` and `nextmail login`:
-
-```bash
-nextmail emails send \
-  --from 'Acme Billing <billing@acme.com>' \
-  --to ada@example.com \
-  --subject 'Your September invoice' \
-  --html '<p>Invoice attached.</p>'
 ```
 
 The same send in Ruby, PHP, Go, Java and C#: https://nextmail.sh/docs/api/quickstart.md
@@ -83,17 +77,18 @@ Add the domain in Settings, then Domains (or with the SDK and the API), publish 
 
 ## 5. Hear back about delivery
 
-Register an https endpoint in Settings, then Webhooks (or `POST https://api.nextmail.sh/webhooks`), choose the events it wants, such as `email.delivered`, `email.bounced`, `email.failed` and `email.received`, and keep its `whsec_` signing secret as `NEXTMAIL_WEBHOOK_SECRET`. Check the signature on every delivery, with the raw body:
+Register an https endpoint in Settings, then Webhooks (or `POST https://api.nextmail.sh/webhooks`), and choose the events it wants, such as `email.delivered`, `email.bounced`, `email.failed` and `email.received`. The user stores its `whsec_` signing secret with the other secrets of the app. Check the signature on every delivery, with the raw body:
 
 ```typescript
 import { verifyWebhookSignature } from '@nextmail/sdk'
+import { config } from './config'
 
 export async function POST(request: Request) {
   try {
     const event = await verifyWebhookSignature({
       payload: await request.text(),
       headers: request.headers,
-      secret: process.env.NEXTMAIL_WEBHOOK_SECRET!,
+      secret: config.nextmailWebhookSecret,
       toleranceSeconds: 300,
     })
     console.log(event.type, event.data)

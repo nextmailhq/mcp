@@ -24,12 +24,6 @@ url = "https://api.nextmail.sh/mcp"
 
 Claude and ChatGPT take the same URL as a custom connector. Cursor, VS Code, Windsurf and the rest: https://nextmail.sh/docs/mcp/connect.md
 
-A client that can only start a local process can use the bridge in the CLI, which uses the sign-in of `nextmail login`:
-
-```bash
-npx -y @nextmail/cli mcp serve
-```
-
 ## Work in the mailbox
 
 1. Call `whoAmI` first. It says which workspace this connection reaches, which addresses it may act on and which permissions it holds.

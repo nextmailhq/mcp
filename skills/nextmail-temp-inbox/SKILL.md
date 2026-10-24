@@ -38,12 +38,12 @@ await temp.delete(inbox.id, scope)
 
 `message.verificationCode` is the sign-in or verification code when the email carries one, and null otherwise. For a link, read `message.decodedBody`, the HTML of the message.
 
-Over HTTP, with no key at all:
+Over HTTP, with no key at all. The first call creates the inbox, and the second reads it with the `token` the first call returned:
 
 ```bash
 curl -s -X POST https://api.nextmail.sh/temp-mail/inboxes -H "Content-Type: application/json" -d '{}'
 
-curl -s https://api.nextmail.sh/temp-mail/inboxes/{id}/messages -H "Authorization: Bearer $INBOX_TOKEN"
+curl -s https://api.nextmail.sh/temp-mail/inboxes/{id}/messages -H "Authorization: Bearer <token from the first call>"
 ```
 
 ## Over MCP

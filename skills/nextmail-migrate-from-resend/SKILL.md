@@ -5,14 +5,9 @@ description: Move an app's email from Resend to Nextmail without rewriting the s
 
 # Move from Resend
 
-## Keep the Resend SDK, change two variables
+## Keep the Resend SDK, change two settings
 
-Nextmail answers the Resend API at `https://api.nextmail.sh/compat/resend`. Point the Resend SDK there and give it an API key from Nextmail:
-
-```bash
-RESEND_BASE_URL=https://api.nextmail.sh/compat/resend
-RESEND_API_KEY=<an API key from Nextmail>
-```
+Nextmail answers the Resend API at `https://api.nextmail.sh/compat/resend`. In the configuration of the app, set the `RESEND_BASE_URL` of the Resend SDK to that address, and replace the Resend API key it uses with an API key from Nextmail. The user changes the key where the app keeps its secrets: never read, write or print a key yourself.
 
 Send, batch, get, list, reschedule and cancel answer in Resend's own shapes and error names. Attachments given as a buffer or a URL, tags, scheduled sends and idempotency keys come across.
 

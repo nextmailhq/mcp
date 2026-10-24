@@ -2,8 +2,8 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "sh.nextmail/mcp",
   "title": "Nextmail",
-  "description": "Read, search, reply to and send email from your own Nextmail mailbox, with contacts and calendars.",
-  "version": "1.0.2",
+  "description": "AI-native email for businesses, developers, and AI agents.",
+  "version": "1.0.3",
   "websiteUrl": "https://nextmail.sh/agents",
   "icons": [
     {

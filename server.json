@@ -3,11 +3,11 @@
   "name": "sh.nextmail/mcp",
   "title": "Nextmail",
   "description": "Read, search, reply to and send email from your own Nextmail mailbox, with contacts and calendars.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "websiteUrl": "https://nextmail.sh/agents",
   "icons": [
     {
-      "src": "https://nextmail.sh/icons-pwa/icon-512.png",
+      "src": "https://nextmail.sh/icons/app-icon-512.png",
       "mimeType": "image/png",
       "sizes": [
         "512x512"

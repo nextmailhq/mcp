@@ -1,0 +1,13 @@
+{
+  "name": "nextmail",
+  "owner": {
+    "name": "Nextmail",
+    "email": "support@nextmail.sh"
+  },
+  "plugins": [
+    {
+      "name": "nextmail",
+      "source": "./"
+    }
+  ]
+}

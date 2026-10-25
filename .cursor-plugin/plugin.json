@@ -1,0 +1,25 @@
+{
+  "name": "nextmail",
+  "displayName": "Nextmail",
+  "description": "Email for AI agents. Connects your agent to your Nextmail mailbox over MCP to read, search, reply and send, with skills for sending email from code, disposable inboxes in tests and moving from Resend.",
+  "version": "1.0.5",
+  "logo": "assets/icon.svg",
+  "author": {
+    "name": "Nextmail",
+    "email": "support@nextmail.sh",
+    "url": "https://nextmail.sh"
+  },
+  "homepage": "https://nextmail.sh/agents",
+  "repository": "https://github.com/nextmailhq/mcp",
+  "license": "MIT",
+  "keywords": [
+    "email",
+    "mcp",
+    "inbox",
+    "email-api",
+    "transactional-email",
+    "ai-agents",
+    "temporary-email",
+    "webhooks"
+  ]
+}
